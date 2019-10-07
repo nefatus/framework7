@@ -22,7 +22,8 @@ export default () => (
       <NavLeft>
         <Link iconIos="f7:menu" iconMd="material:menu" panelOpen="left"></Link>
       </NavLeft>
-      <NavTitle>My App</NavTitle>
+      <Navbar title="My App" large titleLarge="Large Title"> MY STORE
+      </Navbar>
       <NavRight>
         <Link iconIos="f7:menu" iconMd="material:menu" panelOpen="right"></Link>
       </NavRight>
@@ -32,7 +33,7 @@ export default () => (
       <Link>Right Link</Link>
     </Toolbar>
     <Block strong>
-      <p>Here is your blank Framework7 app. Let's see what we have here.</p>
+      <p>WELCOME HOME.</p>
     </Block>
     <BlockTitle>Navigation</BlockTitle>
     <List>

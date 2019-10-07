@@ -3,9 +3,9 @@ import { Page, Navbar, Block, BlockTitle, List, ListItem } from 'framework7-reac
 
 export default () => (
   <Page>
-    <Navbar title="Left Panel" />
+    <Navbar title="Left Panel" backLink="Back"/>
     <Block strong>
-      <p>Left panel content goes here</p>
+      <p>Login</p>
     </Block>
     <BlockTitle>Load page in panel</BlockTitle>
     <List>
