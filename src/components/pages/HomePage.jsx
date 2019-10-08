@@ -1,70 +1,92 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
-    Page,
-    Navbar,
-    NavLeft,
-    NavTitle,
-    NavRight,
-    Link,
-    Toolbar,
-    Block,
-    BlockTitle,
-    List,
-    ListItem,
-    Row,
-    Col,
-    Button
+  Page,
+  Col,
+  Navbar,
+  NavLeft,
+  Link,
+  Toolbar,
+  Card,
+  CardHeader,
+  CardContent,
+  CardFooter,
+  Row,
+  List,
+  ListItem,
 } from 'framework7-react';
 
-export default () => (
-  <Page>
-    <Navbar>
-      <NavLeft>
-        <Link iconIos="f7:menu" iconMd="material:menu" panelOpen="left"></Link>
-      </NavLeft>
-      <Navbar title="My App" large titleLarge="Large Title"> MY STORE
-      </Navbar>
-      <NavRight>
-        <Link iconIos="f7:menu" iconMd="material:menu" panelOpen="right"></Link>
-      </NavRight>
-    </Navbar>
-    <Toolbar bottom>
-      <Link>Left Link</Link>
-      <Link>Right Link</Link>
-    </Toolbar>
-    <Block strong>
-      <p>WELCOME HOME.</p>
-    </Block>
-    <BlockTitle>Navigation</BlockTitle>
-    <List>
-      <ListItem link="/about/" title="About"></ListItem>
-      <ListItem link="/form/" title="Form"></ListItem>
-    </List>
-    <BlockTitle>Modals</BlockTitle>
-    <Block strong>
-      <Row>
-        <Col width="50">
-          <Button fill raised popupOpen="#popup">Popup</Button>
-        </Col>
-        <Col width="50">
-          <Button fill raised loginScreenOpen="#login-screen">Login Screen</Button>
-        </Col>
-      </Row>
-    </Block>
-    <BlockTitle>Panels</BlockTitle>
-    <Block strong>
-      <Row>
-        <Col width="50">
-          <Button fill raised panelOpen="left">Left Panel</Button>
-        </Col>
-        <Col width="50">
-          <Button fill raised panelOpen="right">Right Panel</Button>
-        </Col>
-      </Row>
-    </Block>
-    <List>
-      <ListItem link="/dynamic-route/blog/45/post/125/?foo=bar#about" title="Dynamic Route"></ListItem>
-      <ListItem link="/load-something-that-doesnt-exist/" title="Default Route (404)"></ListItem>
-    </List>
-  </Page>
-);
+class HomePage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: []
+    };
+  }
+
+
+  componentDidMount() {
+    fetch(`https://api.myjson.com/bins/b1n2v`)
+      .then(res => res.json())
+      .then(parsedJSON => parsedJSON.entities.map(data => (
+        {
+          image: `${data.image}`,
+          title: `${data.title}`,
+        }
+      )))
+      .then(items => this.setState({
+        items,
+        isLoaded: false
+      }))
+      .catch(err => console.log(err));
+  }
+
+  render() {
+    const { items } = this.state;
+    return (
+      <Page>
+        <Navbar>
+          <NavLeft>
+            <Link iconIos="f7:menu" iconMd="material:menu" panelOpen="left"></Link>
+          </NavLeft>
+          <Navbar title="My App" large titleLarge="Large Title"> MY STORE
+          </Navbar>
+        </Navbar>
+        <List>
+          <ListItem link="/Form/" title="Welcome"></ListItem>
+        </List>
+        <Row>
+          {
+            items.length > 0 ? items.map(item => {
+              return (
+                <Col width="80">
+                  <Card className="demo-card-header-pic">
+                      <CardHeader
+                        className="no-border"
+                        valign="bottom"
+                        style={{ backgroundImage: 'url(https://cdn.framework7.io/placeholder/nature-1000x600-3.jpg)' }}
+                      >Journey To Mountains</CardHeader>
+                      <CardContent>
+                        <p className="date">Posted on January 21, 2015</p>
+                        <p>Quisque eget vestibulum nulla. Quisque quis dui quis ex ultricies efficitur vitae non felis. Phasellus quis nibh hendrerit...</p>
+                      </CardContent>
+                      <CardFooter>
+                        <Link>Like</Link>
+                        <Link>Read more</Link>
+                      </CardFooter>
+                    </Card>
+                </Col>
+              );
+            
+            }) : null
+          }
+        </Row>
+        <Toolbar bottom>
+          <Link>Left Link</Link>
+        </Toolbar>
+      </Page>
+    );
+
+  }
+}
+
+export default HomePage;
