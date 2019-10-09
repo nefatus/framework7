@@ -4,6 +4,7 @@ import FormPage from './components/pages/FormPage';
 import DynamicRoutePage from './components/pages/DynamicRoutePage';
 import NotFoundPage from './components/pages/NotFoundPage';
 import PanelLeftPage from './components/pages/PanelLeftPage';
+import LoginPage from './components/pages/LoginPage';
 
 export default [
   {
@@ -25,6 +26,10 @@ export default [
   {
     path: '/dynamic-route/blog/:blogId/post/:postId/',
     component: DynamicRoutePage,
+  },
+  {
+    path: '/Login',
+    component: LoginPage,
   },
   {
     path: '(.*)',
