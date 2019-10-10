@@ -16,19 +16,11 @@ export default class extends React.Component {
       <Page>
         <Navbar title="Login Screen"></Navbar>
         <Block>
-          <p>Framework7 comes with ready to use Login Screen layout. It could be used inside of page or inside of popup (Embedded) or as a standalone overlay:</p>
-        </Block>
-
-        <List>
-          <ListItem link="/login-screen-page/" title="As Separate Page"></ListItem>
-        </List>
-
-        <Block>
-          <Button raised large fill loginScreenOpen=".demo-login-screen">As Overlay</Button>
+          <p>Welcome to login start</p>
         </Block>
 
         <Block>
-          <Button raised large fill onClick={() => {this.setState({loginScreenOpened : true})}}>Open Via Prop Change</Button>
+          <Button raised large fill loginScreenOpen=".demo-login-screen">Log In</Button>
         </Block>
 
         <LoginScreen className="demo-login-screen" opened={this.state.loginScreenOpened} onLoginScreenClosed={() => {this.setState({loginScreenOpened : false})}}>

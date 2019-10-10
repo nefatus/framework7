@@ -31,6 +31,7 @@ class HomePage extends Component {
         {
           image: `${data.image}`,
           title: `${data.title}`,
+          price: `${data.price}`,
         }
       )))
       .then(items => this.setState({
@@ -52,31 +53,27 @@ class HomePage extends Component {
           </Navbar>
         </Navbar>
         <List>
-          <ListItem link="/Form/" title="Welcome"></ListItem>
+          <ListItem link="/Form/" title="Daftar Member"></ListItem>
         </List>
         <Row>
-          {
+         {
             items.length > 0 ? items.map(item => {
+              const { image, title, price } = item;
               return (
-                <Col width="80">
+                <Col width="25">
                   <Card className="demo-card-header-pic">
-                      <CardHeader
-                        className="no-border"
-                        valign="bottom"
-                        style={{ backgroundImage: 'url(https://cdn.framework7.io/placeholder/nature-1000x600-3.jpg)' }}
-                      >Journey To Mountains</CardHeader>
-                      <CardContent>
-                        <p className="date">Posted on January 21, 2015</p>
-                        <p>Quisque eget vestibulum nulla. Quisque quis dui quis ex ultricies efficitur vitae non felis. Phasellus quis nibh hendrerit...</p>
-                      </CardContent>
-                      <CardFooter>
-                        <Link>Like</Link>
-                        <Link>Read more</Link>
-                      </CardFooter>
-                    </Card>
+                    <CardHeader></CardHeader>
+                    <CardContent>
+                      <h1 className="text-title">{title}</h1>
+                      <p>Rp. {price}</p>
+                    </CardContent>
+                    <CardFooter>
+                      <Link>Like</Link>
+                      <Link>Read more</Link>
+                    </CardFooter>
+                  </Card>
                 </Col>
               );
-            
             }) : null
           }
         </Row>
