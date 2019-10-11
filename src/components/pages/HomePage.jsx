@@ -34,11 +34,13 @@ class HomePage extends Component {
           price: `${data.price}`,
         }
       )))
-      .then(items => this.setState({
-        items,
-        isLoaded: false
-      }))
-      .catch(err => console.log(err));
+      .then(res => {
+        console.log(res)
+        this.setState({
+          items: res.slice(0, 15),
+          isLoaded: false,
+        });
+      })
   }
 
   render() {
@@ -62,7 +64,7 @@ class HomePage extends Component {
               return (
                 <Col width="25">
                   <Card className="demo-card-header-pic">
-                    <CardHeader></CardHeader>
+                    <CardHeader><img src={image} ></img></CardHeader>
                     <CardContent>
                       <h1 className="text-title">{title}</h1>
                       <p>Rp. {price}</p>
